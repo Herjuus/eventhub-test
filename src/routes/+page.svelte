@@ -10,17 +10,14 @@
   >();
   let cursorArray = [];
 
-  function createRandomString(length: number) {
-    const chars =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    for (let i = 0; i < length; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
+  // https://gist.github.com/olekenneth/4159e11caf02c57a4325d77b66c3316b
+  function createRandomString(groups: number) {
+    return Array.from({ length: groups }, () =>
+        Math.random().toString(36).substring(2, 7)
+    ).join('-');
   }
 
-  const userID = createRandomString(10);
+  const userID = createRandomString(2);
 
   onMount(() => {
     window.addEventListener('mousemove', updateCursorPosition);
